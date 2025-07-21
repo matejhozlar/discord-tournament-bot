@@ -4,12 +4,17 @@ import dotenv from "dotenv";
 // config
 import { validateEnv } from "./config/env/validateEnv.js";
 
+// discord
+import { loadCommands } from "./discord/loader/commandLoader.js";
+
 // logger
 import logger from "./logger/logger.js";
 
 dotenv.config();
 
 validateEnv();
+
+const commandHanders = await loadCommands();
 
 const PORT = process.env.PORT;
 
