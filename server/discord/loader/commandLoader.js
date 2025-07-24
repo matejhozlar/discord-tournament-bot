@@ -2,7 +2,6 @@ import path from "path";
 import fs from "fs";
 import { pathToFileURL, fileURLToPath } from "url";
 
-// logger
 import logger from "../../logger/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
