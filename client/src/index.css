@@ -1,68 +1,63 @@
+/* Global Variables */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Base colors */
+  --background-color: hsl(220, 14%, 12%);
+  --foreground-color: hsl(0, 0%, 88%);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --card-color: hsl(220, 12%, 18%);
+  --card-foreground: hsl(0, 0%, 88%);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --popover-color: hsl(220, 12%, 18%);
+  --popover-foreground: hsl(0, 0%, 88%);
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+  --primary-color: hsl(90, 44%, 48%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --primary-color-hover: hsl(90, 44%, 60%);
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  --secondary-color: hsl(100, 36%, 34%);
+  --secondary-foreground: hsl(0, 0%, 100%);
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+  --muted-color: hsl(220, 12%, 25%);
+  --muted-foreground: hsl(220, 10%, 65%);
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  --accent-color: hsl(45, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 9%);
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  --destructive-color: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+
+  --border-color: hsl(220, 13%, 25%);
+  --input-color: hsl(220, 13%, 25%);
+  --ring-color: hsl(90, 44%, 48%);
+
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: hsl(90, 44%, 48%);
+  --chart-2: hsl(45, 100%, 50%);
+  --chart-3: hsl(100, 36%, 34%);
+  --chart-4: hsl(0, 84%, 60%);
+  --chart-5: hsl(220, 10%, 65%);
+
+  /* Sidebar specific colors */
+  --sidebar-background: hsl(220, 14%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 88%);
+  --sidebar-primary: hsl(90, 44%, 48%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(45, 100%, 50%);
+  --sidebar-accent-foreground: hsl(0, 0%, 9%);
+  --sidebar-border: hsl(220, 13%, 20%);
+  --sidebar-ring: hsl(90, 44%, 48%);
+
+  /* Spacing variables */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
 }
