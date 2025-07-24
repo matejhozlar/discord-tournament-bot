@@ -1,12 +1,15 @@
+// config
 import dotenv from "dotenv";
 dotenv.config();
+import { validateEnv } from "./config/env/validateEnv.js";
 
 import http from "http";
 import { Server as SocketIOServer } from "socket.io";
 import app from "./app/app.js";
-import { validateEnv } from "./config/env/validateEnv.js";
 import logger from "./logger/logger.js";
 import db, { connectToDatabase } from "./db/index.js";
+
+// discord
 import { initDiscordBot } from "./discord/index.js";
 
 validateEnv();
