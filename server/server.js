@@ -1,6 +1,5 @@
 // config
 import dotenv from "dotenv";
-dotenv.config();
 import { validateEnv } from "./config/env/validateEnv.js";
 
 import http from "http";
@@ -11,6 +10,8 @@ import db, { connectToDatabase } from "./db/index.js";
 
 // discord
 import { initDiscordBot } from "./discord/index.js";
+
+dotenv.config();
 
 validateEnv();
 
