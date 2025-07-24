@@ -1,23 +1,43 @@
-import app from "./app/app.js";
 import dotenv from "dotenv";
-
-// config
-import { validateEnv } from "./config/env/validateEnv.js";
-
-// discord
-import { loadCommands } from "./discord/loader/commandLoader.js";
-
-// logger
-import logger from "./logger/logger.js";
-
 dotenv.config();
+
+import http from "http";
+import { Server as SocketIOServer } from "socket.io";
+import app from "./app/app.js";
+import { validateEnv } from "./config/env/validateEnv.js";
+import logger from "./logger/logger.js";
+import db, { connectToDatabase } from "./db/index.js";
+import { initDiscordBot } from "./discord/index.js";
 
 validateEnv();
 
-const commandHanders = await loadCommands();
-
 const PORT = process.env.PORT;
 
-app.listen(PORT, (req, res) => {
-  logger.info(`Server started on http://127.0.0.1:${PORT}`);
+const httpServer = http.createServer(app);
+
+const io = new SocketIOServer(httpServer, {
+  cors: { origin: "*" },
+});
+
+await connectToDatabase();
+
+await initDiscordBot(db, io);
+
+httpServer.listen(PORT, () => {
+  logger.info(`Server running at http://localhost:${PORT}`);
+});
+
+process.on("SIGINT", async () => {
+  logger.info("Gracefully shutting down...");
+  try {
+    await db.end();
+    io.close();
+    httpServer.close(() => {
+      logger.info("Server closed. Exiting...");
+      process.exit(0);
+    });
+  } catch (error) {
+    logger.error(`Error during shutdown: ${error}`);
+    process.exit(1);
+  }
 });
