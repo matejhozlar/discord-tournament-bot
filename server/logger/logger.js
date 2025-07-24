@@ -54,6 +54,31 @@ class DailyFolderLogger {
     });
   }
 
+  cleanOldLogFolders(daysToKeep = 7) {
+    const cutoff = Date.now() - daysToKeep * 24 * 60 * 60 * 1000;
+
+    fs.readdir(logDir, (error, folders) => {
+      if (error) return console.error("Failed to read logDir:", error);
+
+      folders.forEach((folder) => {
+        const folderPath = path.join(logDir, folder);
+
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(folder)) return;
+
+        const folderTime = new Date(folder).getTime();
+        if (!isNaN(folderTime) && folderTime < cutoff) {
+          fs.rm(folderPath, { recursive: true }, (rmErr) => {
+            if (rmErr) {
+              console.log(`Failed to delete old log folder ${folder}:`, rmErr);
+            } else {
+              console.log(`Deleted old log folder: ${folder}`);
+            }
+          });
+        }
+      });
+    });
+  }
+
   monitorDateChange() {
     setInterval(() => {
       const newDate = this.getDateString();
@@ -61,6 +86,7 @@ class DailyFolderLogger {
         this.logger.close();
         this.currentDate = newDate;
         this.logger = this.createLoggerForDate(this.currentDate);
+        this.cleanOldLogFolders(7);
       }
     }, 60 * 1000);
   }
